@@ -1,4 +1,4 @@
-name: Deploy FastAPI to Azure App Service (DeployeTestesdasAPIsPY)
+name: Deploy FastAPI to Azure App Service
 
 on:
   push:
@@ -8,7 +8,6 @@ env:
   API_DIR: fastapi_api
   PY_VERSION: '3.12'
   AZURE_APP_NAME: DeployeTestesdasAPIsPY
-  AZURE_PUBLISH_SECRET: AZUREAPPSERVICE_PUBLISHPROFILE
 
 jobs:
   build-and-deploy:
@@ -32,5 +31,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_APP_NAME }}
-          publish-profile: ${{ secrets[env.AZURE_PUBLISH_SECRET] }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: ${{ env.API_DIR }}
